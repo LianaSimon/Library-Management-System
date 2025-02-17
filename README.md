@@ -23,6 +23,9 @@ ReturnStatus - Tracks returned books.
 
 
 
+## SQL SCRIPT
+
+
 -- CREATE DATABASE AND USE IT
 
 CREATE DATABASE Library;
