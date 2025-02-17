@@ -8,17 +8,17 @@ This project is a Library Management System designed using MySQL. It helps track
 
 The project consists of six tables:
 
-Branch - Stores branch details.
+* Branch - Stores branch details.
 
-Employee - Stores information about library employees.
+* Employee - Stores information about library employees.
 
-Books - Contains details of available books.
+* Books - Contains details of available books.
 
-Customer - Stores customer registration information.
+* Customer - Stores customer registration information.
 
-IssueStatus - Tracks issued books.
+* IssueStatus - Tracks issued books.
 
-ReturnStatus - Tracks returned books.
+* ReturnStatus - Tracks returned books.
 
 
 
@@ -248,26 +248,27 @@ WHERE Books.Rental_Price > 25;
 
 
 
+
 🚀 How to Run
 
-Install MySQL Server.
+* Install MySQL Server.
 
-Open MySQL Workbench or any SQL client.
+* Open MySQL Workbench or any SQL client.
 
-Copy and paste the SQL script (library_management.sql).
+* Copy and paste the SQL script (library_management.sql).
 
-Execute the script to create the database and tables.
+* Execute the script to create the database and tables.
 
-Run queries to interact with the database.
+* Run queries to interact with the database.
 
 
 📌 Future Enhancements
 
-Add user authentication for admin and customers.
+* Add user authentication for admin and customers.
 
-Implement book reservation and overdue tracking.
+* Implement book reservation and overdue tracking.
 
-Develop a front-end UI for easy interaction.
+* Develop a front-end UI for easy interaction.
 
 🎯 Conclusion
 
