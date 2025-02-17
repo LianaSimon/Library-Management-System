@@ -1,5 +1,28 @@
 # LIBRARY MANAGEMENT SYSTEM (SQL CAPSTONE PROJECT)
 
+📚 Introduction
+
+This project is a Library Management System designed using MySQL. It helps track books, employees, branches, and customer transactions such as book issues and returns. The system ensures easy management of a library's inventory and users.
+
+🏛 Database Schema
+
+The project consists of six tables:
+
+Branch - Stores branch details.
+
+Employee - Stores information about library employees.
+
+Books - Contains details of available books.
+
+Customer - Stores customer registration information.
+
+IssueStatus - Tracks issued books.
+
+ReturnStatus - Tracks returned books.
+
+
+
+
 -- CREATE DATABASE AND USE IT
 
 CREATE DATABASE Library;
@@ -133,5 +156,124 @@ SELECT Book_title,Category,Rental_Price FROM Books WHERE Status='Yes';
 
  -- 3. Retrieve the book titles and the corresponding customers who have issued those books.
 
+ SELECT Books.Book_title,Customer.customer_name FROM IssueStatus
+ 
+ JOIN Books ON IssueStatus.Isbn_book=BOOKS.ISBN
+ 
+ JOIN Customer ON IssueStatus.Issued_cust=Customer.customer_id;
+
+ ![image](https://github.com/user-attachments/assets/e7dae580-6edb-4611-973b-f713909f0690)
+ 
+
+ -- 4. Display the total count of books in each category.
+
+  SELECT category,count(*) AS Total_CatergorywiseCounts FROM Books GROUP BY Category;
+
+  ![image](https://github.com/user-attachments/assets/6cac67f8-c2ea-4b18-925b-d2f12206f45a)
+  
+
+  -- 5. Retrieve the employee names and their positions for the employees whose salaries are above Rs.50,000.
+
+SELECT Emp_name,position FROM Employee where salary>50000;
+
+![image](https://github.com/user-attachments/assets/d190644b-154a-42af-b183-462e9b11350a)
+
+
+-- 6. List the customer names who registered before 2022-01-01 and have not issued any books yet.
+
+ INSERT INTO Customer VALUES (203, 'Reggi Brown', '5th Ave, NY', '2021-11-15');
+ 
+ SELECT Customer_name FROM Customer WHERE Reg_date < '2022-01-01' AND Customer_Id NOT IN (SELECT Issued_cust FROM IssueStatus);
+
+ ![image](https://github.com/user-attachments/assets/7733fac9-5e1e-4da0-a5ea-2454cb5b7ddd)
+
+
+  -- 7. Display the branch numbers and the total count of employees in each branch.
+ 
+SELECT Branch_no, COUNT(*) AS Employee_Count FROM Employee GROUP BY Branch_no;
+
+![image](https://github.com/user-attachments/assets/d7c254de-86e8-49f5-b7ce-de8f7e87796e)
+
+-- 8. Display the names of customers who have issued books in the month of June 2023.
+
+SELECT DISTINCT Customer.Customer_name FROM IssueStatus
+
+JOIN Customer ON IssueStatus.Issued_cust = Customer.Customer_Id
+
+WHERE Issue_date BETWEEN '2023-06-01' AND '2023-06-30';
+
+![image](https://github.com/user-attachments/assets/b059fb1b-61f0-4916-b659-e032594149a7)
+
+-- 9. Retrieve book_title from book table containing history.
+
+SELECT Book_title FROM Books WHERE Book_title LIKE '%history%';
+
+![image](https://github.com/user-attachments/assets/118c6077-04a9-44ac-a505-31f2f554efbc)
+
+-- 10. Retrieve the branch numbers along with the count of employees for branches having more than 5 employees.
+
+
+INSERT INTO Employee VALUES (103, 'Emily Johnson', 'Assistant', 40000, 1),(104, 'Michael Brown', 'Librarian', 55000, 1),
+(105, 'David Wilson', 'Staff', 35000, 1),(106, 'Sophia Miller', 'Clerk', 30000, 1),(107, 'Daniel Lee', 'Technician', 48000, 1);
+
+SELECT Branch_no, COUNT(*) AS Employee_Count FROM Employee GROUP BY Branch_no HAVING COUNT(*) > 5;
+
+![image](https://github.com/user-attachments/assets/9323d97a-15b1-41d1-bd2d-8ec85ec6bcd5)
+
+
+-- 11. Retrieve the names of employees who manage branches and their respective branch addresses.
+
+SELECT Employee.Emp_name, Branch.Branch_address FROM Employee
+
+JOIN Branch ON Employee.Emp_Id = Branch.Manager_Id;
+
+
+![image](https://github.com/user-attachments/assets/67cf8b3b-352b-41ba-9e8b-db86ba15e119)
+
+
+-- 12. Display the names of customers who have issued books with a rental price higher than Rs. 25.
+
+SELECT DISTINCT Customer.Customer_name FROM IssueStatus
+
+JOIN Books ON IssueStatus.Isbn_book = Books.ISBN
+
+JOIN Customer ON IssueStatus.Issued_cust = Customer.Customer_Id
+
+WHERE Books.Rental_Price > 25;
+
+![image](https://github.com/user-attachments/assets/068abe62-b19a-4665-9e2c-cac395a4af20)
+
+
+
+🚀 How to Run
+
+Install MySQL Server.
+
+Open MySQL Workbench or any SQL client.
+
+Copy and paste the SQL script (library_management.sql).
+
+Execute the script to create the database and tables.
+
+Run queries to interact with the database.
+
+
+📌 Future Enhancements
+
+Add user authentication for admin and customers.
+
+Implement book reservation and overdue tracking.
+
+Develop a front-end UI for easy interaction.
+
+🎯 Conclusion
+
+This Library Management System efficiently manages books, customers, and transactions. It is an essential tool for any library to keep track of inventory and user interactions. Feel free to contribute and enhance the project! 🚀
+
+
+
+ 
+
+ 
 
 
